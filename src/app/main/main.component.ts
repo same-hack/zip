@@ -52,3 +52,40 @@ export class MainComponent {
     });
   }
 }
+
+// <!DOCTYPE html>
+// <html>
+//   <head>
+//     <title>ドラッグ＆ドロップファイルアップロード</title>
+//     <style>
+//       #drop-area {
+//         border: 2px dashed #ccc;
+//         width: 300px;
+//         height: 200px;
+//         line-height: 200px;
+//         text-align: center;
+//         font-size: 24px;
+//       }
+//     </style>
+//     <script>
+//       function handleFileDrop(event) {
+//         event.preventDefault();
+//         var files = event.dataTransfer.files;
+//         // ファイルの処理を行う（アップロードなど）
+//         for (var i = 0; i < files.length; i++) {
+//           console.log("アップロードするファイル: " + files[i].name);
+//           // ここにファイルのアップロード処理を追加する
+//         }
+//       }
+
+//       function handleDragOver(event) {
+//         event.preventDefault();
+//       }
+//     </script>
+//   </head>
+//   <body>
+//     <div id="drop-area" ondrop="handleFileDrop(event)" ondragover="handleDragOver(event)">
+//       ファイルをここにドロップしてください
+//     </div>
+//   </body>
+// </html>
