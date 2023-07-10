@@ -9,6 +9,20 @@ import * as JSZip from 'jszip';
 export class MainComponent {
   directories: { dir: string; files: string[] }[] = [];
 
+  handleFileDrop(event: any) {
+    event.preventDefault();
+    var files = event.dataTransfer.files;
+    // ファイルの処理を行う（アップロードなど）
+    for (var i = 0; i < files.length; i++) {
+      console.log('アップロードするファイル: ' + files[i].name);
+      // ここにファイルのアップロード処理を追加する
+    }
+  }
+
+  handleDragOver(event: any) {
+    event.preventDefault();
+  }
+
   handleFileInput(event: any): void {
     const file = event.target.files[0];
 
@@ -68,19 +82,7 @@ export class MainComponent {
 //       }
 //     </style>
 //     <script>
-//       function handleFileDrop(event) {
-//         event.preventDefault();
-//         var files = event.dataTransfer.files;
-//         // ファイルの処理を行う（アップロードなど）
-//         for (var i = 0; i < files.length; i++) {
-//           console.log("アップロードするファイル: " + files[i].name);
-//           // ここにファイルのアップロード処理を追加する
-//         }
-//       }
 
-//       function handleDragOver(event) {
-//         event.preventDefault();
-//       }
 //     </script>
 //   </head>
 //   <body>
