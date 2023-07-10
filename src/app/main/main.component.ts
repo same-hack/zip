@@ -7,7 +7,7 @@ import * as JSZip from 'jszip';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  directories: { dir: string; files: string[] }[] = [];
+  directories: { dir: string; files: string[]; isFeature: Boolean }[] = [];
 
   handleFileDrop(event: any) {
     event.preventDefault();
@@ -50,7 +50,11 @@ export class MainComponent {
           if (directoryEntry) {
             directoryEntry.files.push(relativePath);
           } else {
-            this.directories.push({ dir: directory, files: [relativePath] });
+            this.directories.push({
+              dir: directory,
+              files: [relativePath],
+              isFeature: true,
+            });
           }
         }
       });
