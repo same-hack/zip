@@ -66,28 +66,3 @@ export class MainComponent {
     });
   }
 }
-
-// <!DOCTYPE html>
-// <html>
-//   <head>
-//     <title>ドラッグ＆ドロップファイルアップロード</title>
-//     <style>
-//       #drop-area {
-//         border: 2px dashed #ccc;
-//         width: 300px;
-//         height: 200px;
-//         line-height: 200px;
-//         text-align: center;
-//         font-size: 24px;
-//       }
-//     </style>
-//     <script>
-
-//     </script>
-//   </head>
-//   <body>
-//     <div id="drop-area" ondrop="handleFileDrop(event)" ondragover="handleDragOver(event)">
-//       ファイルをここにドロップしてください
-//     </div>
-//   </body>
-// </html>
