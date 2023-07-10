@@ -7,7 +7,7 @@ import * as JSZip from 'jszip';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  filesByDirectory: { [directory: string]: string[] } = {};
+  directories: { dir: string; files: string[] }[] = [];
 
   handleFileInput(event: any): void {
     const file = event.target.files[0];
@@ -30,15 +30,25 @@ export class MainComponent {
           const filename = pathSegments[1];
 
           // ディレクトリごとにファイルをグループ化する
-          if (!this.filesByDirectory[directory]) {
-            this.filesByDirectory[directory] = [];
+          const directoryEntry = this.directories.find(
+            (d) => d.dir === directory
+          );
+          if (directoryEntry) {
+            directoryEntry.files.push(relativePath);
+          } else {
+            this.directories.push({ dir: directory, files: [relativePath] });
           }
-          this.filesByDirectory[directory].push(filename);
         }
       });
 
-      // ディレクトリごとにまとめられたファイルの集計結果を表示する
-      console.log(this.filesByDirectory);
+      // 指定された形式に変換する
+      const result = this.directories.map((d) => ({
+        dir: d.dir,
+        files: d.files,
+      }));
+
+      // 変換結果を表示する
+      console.log(result);
     });
   }
 }
