@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import * as JSZip from 'jszip';
+import { FileService } from '../file.service';
 
 @Component({
   selector: 'app-main',
@@ -8,6 +9,8 @@ import * as JSZip from 'jszip';
 })
 export class MainComponent {
   directories: { dir: string; files: string[]; isFeature: Boolean }[] = [];
+
+  constructor(public service: FileService) {}
 
   handleFileDrop(event: any) {
     event.preventDefault();
@@ -36,6 +39,7 @@ export class MainComponent {
 
     // ファイルを読み込む
     zip.loadAsync(file).then((zipContent) => {
+      const array: any = [];
       // 解凍されたファイルを処理する
       zipContent.forEach((relativePath, file) => {
         if (!file.dir) {
@@ -50,7 +54,7 @@ export class MainComponent {
           if (directoryEntry) {
             directoryEntry.files.push(relativePath);
           } else {
-            this.directories.push({
+            array.push({
               dir: directory,
               files: [relativePath],
               isFeature: true,
@@ -60,10 +64,12 @@ export class MainComponent {
       });
 
       // 指定された形式に変換する
-      const result = this.directories.map((d) => ({
+      const result = array.map((d: any) => ({
         dir: d.dir,
         files: d.files,
       }));
+
+      this.service.updateFile(result);
 
       // 変換結果を表示する
       console.log(result);
