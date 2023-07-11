@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
+import {
+  MatTreeFlatDataSource,
+  MatTreeFlattener,
+} from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { files } from './example-data';
 
@@ -24,10 +27,9 @@ export interface FlatTreeNode {
 @Component({
   selector: 'app-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.scss']
+  styleUrls: ['./tree.component.scss'],
 })
 export class TreeComponent {
-
   /** The TreeControl controls the expand/collapse state of tree nodes.  */
   treeControl: FlatTreeControl<FlatTreeNode>;
 
@@ -42,11 +44,25 @@ export class TreeComponent {
       this.transformer,
       this.getLevel,
       this.isExpandable,
-      this.getChildren);
+      this.getChildren
+    );
 
     this.treeControl = new FlatTreeControl(this.getLevel, this.isExpandable);
-    this.dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+    this.dataSource = new MatTreeFlatDataSource(
+      this.treeControl,
+      this.treeFlattener
+    );
     this.dataSource.data = files;
+  }
+
+  selectFile(node: any) {
+    const fileName = node.name;
+    // ファイル名を取得して利用する処理を実装
+
+    if (this.treeControl.isExpanded(node)) {
+      this.treeControl.collapse(node); // ツリーを閉じる
+    }
+    console.log(node);
   }
 
   /** Transform the data to something the tree can read. */
@@ -55,7 +71,7 @@ export class TreeComponent {
       name: node.name,
       type: node.type,
       level,
-      expandable: !!node.children
+      expandable: !!node.children,
     };
   }
 
