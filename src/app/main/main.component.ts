@@ -54,10 +54,17 @@ export class MainComponent {
           if (directoryEntry) {
             directoryEntry.files.push(relativePath);
           } else {
+            this.service.addFile({
+              dir: directory,
+              files: [relativePath],
+              isFeature: true,
+              code: '',
+            });
             array.push({
               dir: directory,
               files: [relativePath],
               isFeature: true,
+              code: '',
             });
           }
         }
@@ -68,8 +75,6 @@ export class MainComponent {
         dir: d.dir,
         files: d.files,
       }));
-
-      this.service.updateFile(result);
 
       // 変換結果を表示する
       console.log(result);

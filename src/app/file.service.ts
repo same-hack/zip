@@ -12,4 +12,7 @@ export class FileService {
   updateFile(dir: any) {
     this.directories$.next(dir);
   }
+  addFile(dir: any) {
+    this.directories$.next([...this.directories$.getValue(), dir]);
+  }
 }
