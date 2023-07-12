@@ -8,8 +8,6 @@ import { FileService } from '../file.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  directories: { dir: string; files: string[]; isFeature: Boolean }[] = [];
-
   constructor(public service: FileService) {}
 
   handleFileDrop(event: any) {
@@ -35,6 +33,7 @@ export class MainComponent {
   }
 
   unzipFile(file: File): void {
+    const directories: any = [];
     const zip = new JSZip();
 
     // ファイルを読み込む
@@ -48,19 +47,13 @@ export class MainComponent {
           const filename = pathSegments[1];
 
           // ディレクトリごとにファイルをグループ化する
-          const directoryEntry = this.directories.find(
-            (d) => d.dir === directory
+          const directoryEntry = directories.find(
+            (d: any) => d.dir === directory
           );
           if (directoryEntry) {
             directoryEntry.files.push(relativePath);
           } else {
-            this.service.addFile({
-              dir: directory,
-              files: [relativePath],
-              isFeature: true,
-              code: '',
-            });
-            array.push({
+            directories.push({
               dir: directory,
               files: [relativePath],
               isFeature: true,
@@ -70,14 +63,7 @@ export class MainComponent {
         }
       });
 
-      // 指定された形式に変換する
-      const result = array.map((d: any) => ({
-        dir: d.dir,
-        files: d.files,
-      }));
-
-      // 変換結果を表示する
-      console.log(result);
+      this.service.setDirectories(directories);
     });
   }
 }

@@ -7,12 +7,17 @@ import { BehaviorSubject } from 'rxjs';
 export class FileService {
   constructor() {}
 
+  directories: {
+    dir: string;
+    files: string[];
+    isFeature: Boolean;
+    code: '';
+  }[] = [];
+
   directories$ = new BehaviorSubject<any>([]);
 
-  updateFile(dir: any) {
+  setDirectories(dir: any) {
+    this.directories$.next([]);
     this.directories$.next(dir);
-  }
-  addFile(dir: any) {
-    this.directories$.next([...this.directories$.getValue(), dir]);
   }
 }
