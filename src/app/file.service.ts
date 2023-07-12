@@ -36,6 +36,7 @@ export class FileService {
   }
 
   setDirectories(dir: any) {
+    // 一旦クリアする
     this.directories$.next([]);
     this.directories$.next(dir);
   }
