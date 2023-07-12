@@ -1,1 +1,9 @@
-<app-main></app-main>
+<ng-container *ngIf="service.dialog$ | async as dialogKey">
+  <app-file-upload
+    *ngIf="dialogKey == service.DIALOG_KEY.fileUpload"
+  ></app-file-upload>
+  <app-data-info
+    *ngIf="dialogKey == service.DIALOG_KEY.dataInfo"
+  ></app-data-info>
+  <app-result *ngIf="dialogKey == service.DIALOG_KEY.result"></app-result>
+</ng-container>

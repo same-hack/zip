@@ -10,9 +10,12 @@ import { TreeComponent } from './tree/tree.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ResultComponent } from './result/result.component';
+import { DataInfoComponent } from './data-info/data-info.component';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, TreeComponent],
+  declarations: [AppComponent, MainComponent, TreeComponent, FileUploadComponent, ResultComponent, DataInfoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
