@@ -11,6 +11,7 @@ export class DataInfoComponent {
 
   constructor(public service: FileService) {
     this.service.directories$.subscribe((res) => {
+      console.log('res', res);
       this.directories = res;
     });
   }
