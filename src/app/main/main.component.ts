@@ -8,7 +8,11 @@ import { FileService } from '../file.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent {
-  constructor(public service: FileService) {}
+  constructor(public service: FileService) {
+    this.service.directories$.subscribe((res) => {
+      console.log('res', res);
+    });
+  }
 
   handleFileDrop(event: any) {
     event.preventDefault();
