@@ -72,6 +72,6 @@ export class FileUploadComponent {
   }
 
   toNextPage() {
-    this.service.showDataInfo;
+    this.service.showDataInfo();
   }
 }
